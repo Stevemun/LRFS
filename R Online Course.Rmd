@@ -1,0 +1,9 @@
+---
+title: "R Online Course"
+output: html_notebook
+---
+___
+
+## **Data and Visualization in Digital History**
+> [_Link_](https://lincolnmullen.com/courses/data-dh.2016/)
+>

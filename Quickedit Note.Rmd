@@ -1,0 +1,22 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+### **Operator**
+###
+
+` A %*% B ` : 
+```
+sum(A*B)
+```
+
+` A %o% B ` : 
+```
+printout a matrix by taking vector A as row and vector B as column
+```
+
+` arg(A) ` :
+```
+to show the argument(s) of a function A
+```

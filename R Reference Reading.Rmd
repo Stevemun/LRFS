@@ -1,0 +1,43 @@
+---
+title: "R Reference Reading"
+output: html_notebook
+---
+
+___
+
+
+## **R for Data Science**
+> [_Link_](http://r4ds.had.co.nz/index.html)
+>
+
+___
+
+## **Efficient R Programming**
+> [_Link_](https://csgillespie.github.io/efficientR/index.html)
+>
+
+___
+
+## **Data Wrangling with R**
+> [_Link_](http://uc-r.github.io/data_wrangling)
+>
+
+___
+
+## **Data Wrangling, exploration, and analysis with R**
+> [_Link_](http://stat545.com/)
+>
+
+___
+
+## **Bookdown: Authoring Books and Technical Documents with R Markdown**
+> [_Link_](https://bookdown.org/yihui/bookdown/)
+>
+
+___
+
+## **Beyond Spreadsheets with R: Chapter 1**
+> [_Link_](https://manning-content.s3.amazonaws.com/download/7/28150d9-43f3-457d-9fb0-6653f22aaaeb/Carroll_BSwR_MEAP_V04_ch1.pdf)
+>
+
+___

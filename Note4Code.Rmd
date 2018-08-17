@@ -1,0 +1,107 @@
+---
+title: "HarvardX::Data Science: Data Visualization:: exercise sample code"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# *Load package first*
+
+``` {r package_loading}
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer) # special color pallette
+library(dslabs)
+library(plotly) # interactive plot
+data(us_contagious_diseases)
+
+```
+
+# *Tile_plot*
+
+ - The sample code given creates a tile plot showing the rate of smallpox cases per population. 
+
+## Code
+
+
+```{r smallpox_tile_s}
+the_disease = "Smallpox"
+dat <- us_contagious_diseases %>% 
+   filter(!state%in%c("Hawaii","Alaska") & disease == the_disease & weeks_reporting >=10) %>% 
+   mutate(rate = count / population * 10000) %>% 
+   mutate(state = reorder(state, rate))
+
+Smallpox_tile <- dat %>% ggplot(aes(year, state, fill = rate)) + 
+  geom_tile(color = "grey50") + 
+  scale_x_continuous(expand=c(0,0)) + 
+  scale_fill_gradientn(colors = brewer.pal(9, "Reds"), trans = "sqrt") + 
+  theme_minimal() + 
+  theme(panel.grid = element_blank()) + 
+  ggtitle(the_disease) + 
+  ylab("") + 
+  xlab("")
+```
+
+## Plotting
+
+> Static plotting
+
+```{r Smallpox_tile_s, echo=FALSE}
+plot(Smallpox_tile)
+```
+
+> Interactive plotting
+
+```{r Smallpox_tile_i, echo=FALSE}
+ggplotly(Smallpox_tile)
+```
+
+# *Time series_plot*
+
+- The sample code given creates a time series plot showing the rate of smallpox cases per population by state. 
+
+## Code
+
+> R code as follows:
+
+```{r smallpox_time_series}
+the_disease = "Smallpox"
+dat <- us_contagious_diseases %>%
+   filter(!state%in%c("Hawaii","Alaska") & disease == the_disease & weeks_reporting >= 10) %>%
+   mutate(rate = count / population * 10000) %>%
+   mutate(state = reorder(state, rate))
+
+avg <- us_contagious_diseases %>%
+  filter(disease==the_disease) %>% group_by(year) %>%
+  summarize(us_rate = sum(count, na.rm=TRUE)/sum(population, na.rm=TRUE)*10000)
+
+Smallpox_time_series <- dat %>% ggplot() +
+  geom_line(aes(year, rate, group = state),  color = "grey50", 
+            show.legend = FALSE, alpha = 0.2, size = 1) +
+  geom_line(mapping = aes(year, us_rate),  data = avg, size = 1, color = "black") +
+  scale_y_continuous(trans = "sqrt", breaks = c(5,25,125,300)) + 
+  ggtitle("Cases per 10,000 by state") + 
+  xlab("") + 
+  ylab("") +
+  geom_text(data = data.frame(x=1955, y=50), mapping = aes(x, y, label="US average"), color="black") + 
+  geom_vline(xintercept=1960, col = "blue")
+```
+
+## Plotting
+
+> Static plotting
+
+```{r Smallpox_time_series_s, echo=FALSE}
+plot(Smallpox_time_series)
+```
+
+> Interactive plotting
+
+```{r Smallpox_time_series_i, echo=FALSE}
+ggplotly(Smallpox_time_series)
+```
+
+
+> Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
